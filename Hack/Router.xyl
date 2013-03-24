@@ -48,28 +48,31 @@
       paper.link.between(pattern,    gotcha);
   });
   </script>
-  <p>Tout d'abord, une règle a une <strong>visibilité</strong> qui contrôle la
-  <strong>provenance</strong> de la requête. Il y a deux visibilités possibles :
-  publique (avec la constante <code>Hoa\Router::VISIBILITY_PUBLIC</code>) et
-  privée (avec la constante <code>Hoa\Router::VISIBILITY_PRIVATE</code>). Par
-  exemple, si la requête est extérieure au programme (typiquement, un client
-  envoie une requête sur un serveur) et que la règle a une visibilité privée, la
-  règle ne sera pas retenue. En revanche, si une requête est interne au
-  programme, une règle publique ou privée pourra être retenue.  Ensuite, une
-  règle définit des <strong>méthodes</strong> qui vérifient le type de la
-  requête. Par exemple, dans le cas d'une requête HTTP, nous pouvons avoir la
-  méthode <code>GET</code> : toutes les règles ayant au moins la méthode
-  <code>GET</code> peuvent être retenues.  Enfin, une règle impose un
-  <strong>motif</strong> sous la forme d'une expression régulière (basée sur les
-  <a href="http://pcre.org/">PCRE</a>). La requête doit correspondre à ce motif
-  pour que la règle soit retenue. Ce motif permet aussi d'extraire des données
-  de la requête, ce qui aidera à son acheminant.  Notons par ailleurs que toutes
+  <ul>
+    <li>Tout d'abord, une règle a une <strong>visibilité</strong> qui contrôle la
+    <strong>provenance</strong> de la requête. Il y a deux visibilités possibles :
+    publique (avec la constante <code>Hoa\Router::VISIBILITY_PUBLIC</code>) et
+    privée (avec la constante <code>Hoa\Router::VISIBILITY_PRIVATE</code>).
+    Les règles Privées ne peuvent être utilisées que par des requêtes internes,
+    alors que les règles publiques peuvent être utilisées par des requêtes internes
+    comme externes (typiquement, un client qui envoie une requête sur un serveur).</li>
+    <li>Ensuite, une règle définit des <strong>méthodes</strong> qui vérifient le type de la
+    requête. Par exemple, dans le cas d'une requête HTTP, nous pouvons avoir la
+    méthode <code>GET</code> : toutes les règles ayant au moins la méthode
+    <code>GET</code> peuvent être retenues.</li>
+    <li>Enfin, une règle impose un <strong>motif</strong> sous la forme
+    d'une expression régulière (basée sur les <a href="http://pcre.org/">PCRE</a>).
+    La requête doit correspondre à ce motif pour que la règle soit retenue.
+    Ce motif permet aussi d'extraire des données de la requête,
+    ce qui aidera à son acheminant.</li>
+  </ul>
+  <p>Notons par ailleurs que toutes
   les règles portent un <strong>identifiant</strong> unique.</p>
 
   <h3 id="Router_et_derouter" for="main-toc">Router et dérouter</h3>
 
   <p>Prenons l'exemple du routeur HTTP qui manipule des requêtes HTTP. L'ajout
-  de règle se fait à l'aide de la méthode <code>Hoa\Router\Http::addRule</code>
+  d'une règle se fait à l'aide de la méthode <code>Hoa\Router\Http::addRule</code>
   et prend obligatoirement en arguments les méthodes, l'identifiant et le motif,
   dans cet ordre. Il existe aussi la méthode
   <code>Hoa\Router\Http::addPrivateRule</code> avec les même arguments.
